@@ -49,12 +49,11 @@ Using pathogen:
 # Configuration
 
 ## `g:gf_open_file_command`
-    ```
+
     default: 'edit'
 
     Define the command which will open the file or directory.
     For example: vsplit, split, tabnew, edit, etc...
-    ```
 
 # Contributing
 
