@@ -4,13 +4,14 @@ An improved version of the `gf` mapping in Vim, which opens the file under the
 cursor, but now in a smarter way.
 
 # Table of Contents
-1. [How It Works](#how-it-works)
-2. [Getting Started](#getting-started)
-3. [Configuration](#configuration)
-  1. [g:gf_open_file_command](#g-gf-open-file-command)
-4. [Contributing](#contributing)
-  1. [Linting](#linting)
-5. [License](#License)
+- [gf.vim](#gfvim)
+- [Table of Contents](#table-of-contents)
+- [How It Works](#how-it-works)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+  * [`g:gf_open_file_command`](#ggf_open_file_command)
+- [Contributing](#contributing)
+  * [Linting](#linting)
 
 # How It Works
 
