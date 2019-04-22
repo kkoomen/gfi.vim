@@ -23,6 +23,8 @@ Files will be resolved now based on its path:<br />
 
 This is default behavior for every filetype.
 
+<hr />
+
 Files will also be checked in a more advanced way per filetype when it can:
 
 - javascript / typescript / jsx
