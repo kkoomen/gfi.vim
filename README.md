@@ -12,6 +12,7 @@ which opens the file under the cursor, but now in a smarter way.
   * [`g:gfi_open_file_command`](#ggfi_open_file_command)
 - [Contributing](#contributing)
   * [Linting](#linting)
+  * [Documentation](#documentation)
 
 # How It Works
 
@@ -77,6 +78,11 @@ or if you use [Syntastic](https://github.com/vim-syntastic/syntastic)
 ```
 let g:syntastic_vim_checkers = ['vint']
 ```
+
+## Documentation
+
+Every function, mapping or configurable option should contain documentation. The
+documentation in the `doc/` should be generated using [vimdoc](https://github.com/google/vimdoc).
 
 # License
 

@@ -1,0 +1,75 @@
+*gfi.txt*	An improved version of the `gf` command
+Kim Koomen                                                               *gfi*
+
+==============================================================================
+CONTENTS                                                        *gfi-contents*
+  1. Introduction..................................................|gfi-intro|
+  2. Configuration................................................|gfi-config|
+  3. Commands...................................................|gfi-commands|
+  4. Functions.................................................|gfi-functions|
+
+==============================================================================
+INTRODUCTION                                                       *gfi-intro*
+
+An improved version of the `gfi` mapping in Vim, which opens the file under
+the cursor, but now in a smarter way.
+
+==============================================================================
+CONFIGURATION                                                     *gfi-config*
+
+                                                     *g:gfi_open_file_command*
+|g:gfi_open_file_command|
+
+Allows the user to change the way how a file should open.
+
+==============================================================================
+COMMANDS                                                        *gfi-commands*
+
+:GFI                                                                    *:GFI*
+  Go to the file under the cursor.
+
+==============================================================================
+FUNCTIONS                                                      *gfi-functions*
+
+gfi#goto_file()                                              *gfi#goto_file()*
+  This is the main function that will add default behavior for resolving paths
+  and runs filetype specific logic when it can.
+
+gfi#buffer#open({file})                                    *gfi#buffer#open()*
+  Open a new buffer with the given file. See |g:gfi_open_file_command| for
+  more info on how to change the way files/buffers open.
+
+gfi#buffer#get_relative_git_path()        *gfi#buffer#get_relative_git_path()*
+  Get the current buffer path relative to the git directory it is located in.
+
+gfi#buffer#get_git_root()                          *gfi#buffer#get_git_root()*
+  Get the git root based on the current buffer.
+
+gfi#file#prompt_multiple({paths})                 *gfi#file#prompt_multiple()*
+  Create a prompt towards the user with 2 or more paths as an input. The paths
+  can be regular files or directories. The one being selected will be
+  returned. A user may enter '0' to cancel the prompt. This function won't be
+  called if the {paths} argument has less than 2 paths.
+
+gfi#file#expand({expand_expr})                             *gfi#file#expand()*
+  Check for a file './filename' with or without out extension and expand it.
+  If a single file is found, we return its path.
+  If multiple matches are found with different extensions or directories that
+    have the same name, we prompt the user with them and open the one they
+    selected.
+
+gfi#file#is_readable({filepath}, {include_directories})
+                                                      *gfi#file#is_readable()*
+  Check whether a certain filepath is a readable file or an existing
+  directory.
+
+gfi#sort#by_directory({path1}, {path2})              *gfi#sort#by_directory()*
+  A callback function used in `sort()` functions which sorts paths by
+  directory followed by the remaining files.
+
+gfi#sort#by_files({path1}, {path2})                      *gfi#sort#by_files()*
+  A callback function used in `sort()` functions which sorts paths by files
+  followed by the remaining directories.
+
+
+vim:tw=78:ts=8:ft=help:norl:
