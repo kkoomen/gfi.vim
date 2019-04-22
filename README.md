@@ -19,7 +19,7 @@ which opens the file under the cursor, but now in a smarter way.
 Files will be resolved now based on its path:<br />
 - relative to the current buffer
 - relative to vim's current working directory
-- based on the git directory it is located in (to resolve absolute imports)
+- based on the git directory it is located in
 
 This is default behavior for every filetype.
 
