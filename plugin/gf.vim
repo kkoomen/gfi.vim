@@ -29,5 +29,7 @@ endif
 " Go to the file under the cursor.
 command! GFI :call gfi#goto_file()
 
+nnoremap gf :GFI<CR>
+
 let &cpoptions = s:save_cpo
 unlet s:save_cpo
