@@ -39,7 +39,7 @@ function! gf#open_file() abort
 
   " Check filetype specific.
   let l:javascript_filetypes = '^\(javascript.jsx\|typescript.tsx\|jsx\|javascript\|typescript\)$'
-  if !empty(matchstr(&filetype, l:javascript_filetypes))
+  if &filetype =~# l:javascript_filetypes
     let l:ft_resolved_file = gf#filetype#javascript(l:cfile)
     if gf#file#is_readable(l:ft_resolved_file, 1)
       return gf#buffer#open(l:ft_resolved_file)
