@@ -39,6 +39,16 @@ Files will also be checked in a more advanced way per filetype when it can:
       file in that directory, since webpack is resolving `index` files if a
       directory is imported.
 
+- golang
+
+    Go has an 'import' syntax which contains paths relative to the $GOPATH var.
+    For example:
+      import (
+         "github.com/username/repo"
+         "github.com/username/repo/src/dir/subdir"
+      )
+    These paths will be resolved using the format '$GOPATH/src/<import>'
+
 # Getting Started
 
 Install `gfi.vim`:
