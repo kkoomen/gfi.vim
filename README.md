@@ -34,7 +34,7 @@ Files will also be checked in a more advanced way per filetype when it can:
     relative or absolute. Javascript-like filetype buffers will also try to
     resolve paths based on:
 
-    - The 'moduleRoots' property in the `package.json` of the project.
+    - The `moduleRoots` property in the `package.json` of the project.
     - Whether the input is a directory and if it is, it will look for an `index`
       file in that directory, since webpack is resolving `index` files if a
       directory is imported.
@@ -49,7 +49,7 @@ Files will also be checked in a more advanced way per filetype when it can:
         "github.com/username/repo/src/dir/subdir"
     )
     ```
-    These paths will be resolved using the format `$GOPATH/src/<import>`
+    These paths will be resolved using the format `$GOPATH/src/<import>`.
 
 # Getting Started
 
