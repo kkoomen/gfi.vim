@@ -38,20 +38,20 @@ function! gf#goto_file() abort
   endfor
 
   " Check filetype specific.
-  let l:javascript_filetypes = '^\(javascript.jsx\|typescript.tsx\|jsx\|javascript\|typescript\)$'
-  if &filetype =~# l:javascript_filetypes
-    let l:ft_resolved_file = gf#filetype#javascript#goto_file(l:cfile)
-    if gf#file#is_readable(l:ft_resolved_file, 1)
-      return gf#buffer#open(l:ft_resolved_file)
-    endif
-  endif
+  let l:filetypes = {
+        \ 'javascript': '^\(javascript.jsx\|typescript.tsx\|jsx\|javascript\|typescript\)$',
+        \ 'go': '^go$',
+        \ }
+  for [l:ft, l:regex] in items(l:filetypes)
+    if &filetype =~# l:regex
+      let l:ft_resolved_file =
+            \ call('gf#filetype#' . l:ft . '#goto_file', [ l:cfile ])
 
-  if &filetype =~# '^go$'
-    let l:ft_resolved_file = gf#filetype#go#goto_file(l:cfile)
-    if gf#file#is_readable(l:ft_resolved_file, 1)
-      return gf#buffer#open(l:ft_resolved_file)
+      if gf#file#is_readable(l:ft_resolved_file, 1)
+        return gf#buffer#open(l:ft_resolved_file)
+      endif
     endif
-  endif
+  endfor
 
   echo 'Could not open "' . l:cfile . '"'
 endfunction

@@ -7,7 +7,14 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-
+""
+" Go has an 'import' syntax which contains paths relative to the $GOPATH var.
+" For example:
+"   import (
+"      'github.com/username/repo'
+"      'github.com/username/repo/src/dir/subdir'
+"   )
+" These paths can be resolved via '$GOPATH/src/<import>'.
 function! gf#filetype#go#goto_file(cfile) abort
   let l:gopath = expand('$GOPATH')
   if l:gopath !=# '$GOPATH'

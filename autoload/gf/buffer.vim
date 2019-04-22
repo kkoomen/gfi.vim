@@ -15,7 +15,7 @@ function! gf#buffer#open(file) abort
 endfunction
 
 ""
-" Get the current buffer path relative to the git directory it is located at.
+" Get the current buffer path relative to the git directory it is located in.
 function! gf#buffer#get_relative_git_path(...) abort
   return substitute(
         \ expand('%:p' . a:1),
