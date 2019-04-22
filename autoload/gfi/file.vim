@@ -8,11 +8,12 @@ let s:save_cpo = &cpoptions
 set cpoptions&vim
 
 ""
+" @public
 " Create a prompt towards the user with 2 or more paths as an input. The paths
 " can be regular files or directories. The one being selected will be returned.
 " A user may enter '0' to cancel the prompt.
-" This function won't be called if the `paths` argument has less than 2 paths.
-function! gf#file#prompt_multiple(paths) abort
+" This function won't be called if the {paths} argument has less than 2 paths.
+function! gfi#file#prompt_multiple(paths) abort
   echo 'Multiple matches found'
   echo '[0] Cancel'
   for l:path in a:paths
@@ -47,14 +48,15 @@ function! gf#file#prompt_multiple(paths) abort
 endfunction
 
 ""
+" @public
 " Check for a file './filename' with or without out extension and expand it.
 " - If a single file is found, we return its path.
 " - If multiple matches are found with different extensions or directories that
 "   have the same name, we prompt the user with them and open the one they
 "   selected.
-function! gf#file#expand(expand_expr) abort
+function! gfi#file#expand(expand_expr) abort
   " Check for files only (TODO: support dirs).
-  let l:files = sort(expand(a:expand_expr . '*', 0, 1), 'gf#sort#by_files')
+  let l:files = sort(expand(a:expand_expr . '*', 0, 1), 'gfi#sort#by_files')
 
   if len(l:files) == 0
     " Nothing found.
@@ -64,13 +66,14 @@ function! gf#file#expand(expand_expr) abort
     return get(l:files, 0)
   else
     " Prompt the user which match should be opened.
-    return gf#file#prompt_multiple(l:files)
+    return gfi#file#prompt_multiple(l:files)
   endif
 endfunction
 
 ""
+" @public
 " Check whether a certain filepath is a readable file or an existing directory.
-function! gf#file#is_readable(filepath, include_directories) abort
+function! gfi#file#is_readable(filepath, include_directories) abort
   if a:include_directories == 1
     return filereadable(a:filepath) || isdirectory(a:filepath)
   else

@@ -268,7 +268,7 @@ function! s:parse_object(tok)
   endif
 endfunction
 
-function! gf#parser#json#parse_string(str)
+function! gfi#parser#json#parse_string(str)
   try
     call s:set_parse_string(a:str)
     let [ result, tok ] = s:parse_object(s:get_token())

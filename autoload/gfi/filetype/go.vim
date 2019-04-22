@@ -15,11 +15,11 @@ set cpoptions&vim
 "      'github.com/username/repo/src/dir/subdir'
 "   )
 " These paths can be resolved via '$GOPATH/src/<import>'.
-function! gf#filetype#go#goto_file(cfile) abort
+function! gfi#filetype#go#goto_file(cfile) abort
   let l:gopath = expand('$GOPATH')
   if l:gopath !=# '$GOPATH'
     let l:path = simplify(l:gopath . '/src/' . a:cfile)
-    if gf#file#is_readable(l:path, 1)
+    if gfi#file#is_readable(l:path, 1)
       return l:path
     endif
   endif

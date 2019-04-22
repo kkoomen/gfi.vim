@@ -1,15 +1,15 @@
-# gf.vim
+# gfi.vim
 
-An improved version of the `gf` mapping in Vim, which opens the file under the
-cursor, but now in a smarter way.
+A zero-configuration extension and improved version of the `gf` command in Vim,
+which opens the file under the cursor, but now in a smarter way.
 
 # Table of Contents
-- [gf.vim](#gfvim)
+- [gfi.vim](#gfivim)
 - [Table of Contents](#table-of-contents)
 - [How It Works](#how-it-works)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
-  * [`g:gf_open_file_command`](#ggf_open_file_command)
+  * [`g:gfi_open_file_command`](#ggfi_open_file_command)
 - [Contributing](#contributing)
   * [Linting](#linting)
 
@@ -36,19 +36,19 @@ Files will also be checked in a more advanced way per filetype when it can:
 
 # Getting Started
 
-Install `gf.vim`:
+Install `gfi.vim`:
 
 Using vim-pack:
 
-- `git clone https://github.com/kkoomen/gf.vim ~/.vim/pack/<dir>/start/gf`
+- `git clone https://github.com/kkoomen/gfi.vim ~/.vim/pack/<dir>/start/gfi`
 
 Using pathogen:
 
-- `git clone https://github.com/kkoomen/gf.vim ~/.vim/bundle/gf`
+- `git clone https://github.com/kkoomen/gfi.vim ~/.vim/bundle/gfi`
 
 # Configuration
 
-## `g:gf_open_file_command`
+## `g:gfi_open_file_command`
 
     default: 'edit'
 
