@@ -10,9 +10,9 @@ set cpoptions&vim
 ""
 " This is the main function that will add default behavior for resolving paths
 " and runs filetype specific logic when it can.
-function! gf#open_file() abort
+function! gf#goto_file() abort
   let l:cfile = expand('<cfile>')
-  echo 'Opening "' . l:cfile . '"'
+  echo 'Opening "' . l:cfile . '"...'
 
   " All the default paths that should be looked for, no matter the filetype,
   " will be stored in this variable.
@@ -40,7 +40,14 @@ function! gf#open_file() abort
   " Check filetype specific.
   let l:javascript_filetypes = '^\(javascript.jsx\|typescript.tsx\|jsx\|javascript\|typescript\)$'
   if &filetype =~# l:javascript_filetypes
-    let l:ft_resolved_file = gf#filetype#javascript(l:cfile)
+    let l:ft_resolved_file = gf#filetype#javascript#goto_file(l:cfile)
+    if gf#file#is_readable(l:ft_resolved_file, 1)
+      return gf#buffer#open(l:ft_resolved_file)
+    endif
+  endif
+
+  if &filetype =~# '^go$'
+    let l:ft_resolved_file = gf#filetype#go#goto_file(l:cfile)
     if gf#file#is_readable(l:ft_resolved_file, 1)
       return gf#buffer#open(l:ft_resolved_file)
     endif

@@ -1,5 +1,5 @@
 " ==============================================================================
-" Filename: gf.vim
+" Filename: go.vim
 " Maintainer: Kim Koomen <koomen@protonail.com>
 " License: MIT
 " ==============================================================================
@@ -7,16 +7,18 @@
 let s:save_cpo = &cpoptions
 set cpoptions&vim
 
-if exists('g:loaded_gf')
-  finish
-endif
-let g:loaded_gf = 1
 
-if !exists('g:gf_open_file_command')
-  let g:gf_open_file_command= 'edit'
-endif
+function! gf#filetype#go#goto_file(cfile) abort
+  let l:gopath = expand('$GOPATH')
+  if l:gopath !=# '$GOPATH'
+    let l:path = simplify(l:gopath . '/src/' . a:cfile)
+    if gf#file#is_readable(l:path, 1)
+      return l:path
+    endif
+  endif
 
-nmap gf :call gf#goto_file()<CR>
+  return 0
+endfunction
 
 let &cpoptions = s:save_cpo
 unlet s:save_cpo

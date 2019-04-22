@@ -1,5 +1,5 @@
 " ==============================================================================
-" Filename: filetype.vim
+" Filename: javascript.vim
 " Maintainer: Kim Koomen <koomen@protonail.com>
 " License: MIT
 " ==============================================================================
@@ -17,7 +17,7 @@ set cpoptions&vim
 "   webpack-configured javascript projects mainly have imports where the
 "   extension is ommitted and the import will automatically resolve `index`
 "   files that are located in the imported directory.
-function! gf#filetype#javascript(cfile) abort
+function! gf#filetype#javascript#goto_file(cfile) abort
   let l:buffer_git_root = gf#buffer#get_git_root()
 
   " Resolve files based on the 'moduleRoots' property in a package.json.
