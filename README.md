@@ -41,7 +41,7 @@ Files will also be checked in a more advanced way per filetype when it can:
 
 - golang
 
-    Go has an 'import' syntax which contains paths relative to the $GOPATH var.<br />
+    Go has an `import` syntax which contains paths relative to the $GOPATH var.<br />
     For example:<br />
     ```
     import (
@@ -49,7 +49,7 @@ Files will also be checked in a more advanced way per filetype when it can:
         "github.com/username/repo/src/dir/subdir"
     )
     ```
-    These paths will be resolved using the format '$GOPATH/src/<import>'
+    These paths will be resolved using the format `$GOPATH/src/<import>`
 
 # Getting Started
 
