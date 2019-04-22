@@ -24,7 +24,7 @@ Files will also be checked in a more advanced way per filetype when it can:
 
 - javascript / typescript / jsx
 
-    Since most javascript projects these days use webpack to resolve their
+    Most javascript projects these days use webpack to resolve their
     import statements. This module is also able to resolve these import paths,
     relative or absolute. Javascript-like filetype buffers will also try to
     resolve paths based on:
