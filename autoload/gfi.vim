@@ -13,6 +13,10 @@ set cpoptions&vim
 " and runs filetype specific logic when it can.
 function! gfi#goto_file() abort
   let l:cfile = expand('<cfile>')
+  if empty(l:cfile)
+    return 0
+  endif
+
   echo 'Opening "' . l:cfile . '"...'
 
   " All the default paths that should be looked for, no matter the filetype,
@@ -32,8 +36,10 @@ function! gfi#goto_file() abort
   call add(l:paths, simplify(gfi#buffer#get_git_root() . '/' . l:cfile))
 
   for l:path in l:paths
-    let l:expanded_path = gfi#file#expand(l:path)
-    if gfi#file#is_readable(l:expanded_path, 1)
+    let l:expanded_path = gfi#file#expand(l:path, 0)
+    if l:expanded_path == -1
+      return -1
+    elseif gfi#file#is_readable(l:expanded_path, 0)
       return gfi#buffer#open(l:expanded_path)
     endif
   endfor
@@ -51,6 +57,15 @@ function! gfi#goto_file() abort
       if gfi#file#is_readable(l:ft_resolved_file, 1)
         return gfi#buffer#open(l:ft_resolved_file)
       endif
+    endif
+  endfor
+
+  for l:path in l:paths
+    let l:expanded_path = gfi#file#expand(l:path, 1)
+    if l:expanded_path == -1
+      return -1
+    elseif gfi#file#is_readable(l:expanded_path, 1)
+      return gfi#buffer#open(l:expanded_path)
     endif
   endfor
 

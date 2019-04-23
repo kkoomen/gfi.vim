@@ -24,7 +24,7 @@ function! gfi#filetype#javascript#goto_file(cfile) abort
   let l:pkg_file = simplify(l:buffer_git_root . '/package.json')
   if filereadable(l:pkg_file)
     let l:pkg_contents = join(readfile(l:pkg_file), '')
-    let l:json_dict = gfi#parser#json#parse_string(l:pkg_contents)
+    let l:json_dict = json_decode(l:pkg_contents)
     if has_key(l:json_dict, 'moduleRoots')
       for l:module_root in l:json_dict['moduleRoots']
         let l:path = simplify(l:buffer_git_root . '/' . l:module_root . '/' . a:cfile)
@@ -34,7 +34,7 @@ function! gfi#filetype#javascript#goto_file(cfile) abort
         " where the 'Navigation' at the end of the import is the folder and will
         " automatically resolve the `index.(js|jsx)` file.
         if isdirectory(l:path)
-          let l:index_file = gfi#file#expand(simplify(l:path . '/index'))
+          let l:index_file = gfi#file#expand(simplify(l:path . '/index'), 0)
           if gfi#file#is_readable(l:index_file, 0)
             return l:index_file
           endif
@@ -43,7 +43,7 @@ function! gfi#filetype#javascript#goto_file(cfile) abort
         " If the directory/index pattern from above didn't return anything we
         " don't have an index in the directory. We'll continue to expand the
         " path and open any result.
-        let l:expanded_path = gfi#file#expand(l:path)
+        let l:expanded_path = gfi#file#expand(l:path, 1)
         if gfi#file#is_readable(l:expanded_path, 1)
           return l:expanded_path
         endif

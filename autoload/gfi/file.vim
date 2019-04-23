@@ -25,17 +25,11 @@ function! gfi#file#prompt_multiple(paths) abort
   endfor
 
   " Grab the user input, validate it and grab the selected filepath.
-  let l:selected_index = input('Enter an index to open: ')
-
-  " input() does not add a new line after the input has been given, so upcoming
-  " messages will be immediately next to the input. To prevent this we insert a
-  " newline character.
-  echo "\n"
-
+  let l:selected_index = input('Enter an index to open:')
   if l:selected_index !~# '^\d\+$'
     echoerr 'Input must be an integer'
   elseif l:selected_index ==# '0'
-    return 0
+    return -1
   else
     let l:idx = l:selected_index - 1
     let l:selected_filepath = get(a:paths, l:idx)
@@ -54,9 +48,12 @@ endfunction
 " - If multiple matches are found with different extensions or directories that
 "   have the same name, we prompt the user with them and open the one they
 "   selected.
-function! gfi#file#expand(expand_expr) abort
-  " Check for files only (TODO: support dirs).
-  let l:files = sort(expand(a:expand_expr . '*', 0, 1), 'gfi#sort#by_files')
+function! gfi#file#expand(expand_expr, include_directories) abort
+  let l:expand_expr = a:expand_expr . '*.*'
+  if a:include_directories == 1
+    let l:expand_expr = a:expand_expr . '*'
+  endif
+  let l:files = sort(expand(l:expand_expr, 0, 1), 'gfi#sort#by_files')
 
   if len(l:files) == 0
     " Nothing found.
