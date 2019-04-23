@@ -51,7 +51,7 @@ gfi#file#prompt_multiple({paths})                 *gfi#file#prompt_multiple()*
   returned. A user may enter '0' to cancel the prompt. This function won't be
   called if the {paths} argument has less than 2 paths.
 
-gfi#file#expand({expand_expr})                             *gfi#file#expand()*
+gfi#file#expand({expand_expr}, {include_directories})      *gfi#file#expand()*
   Check for a file './filename' with or without out extension and expand it.
   If a single file is found, we return its path.
   If multiple matches are found with different extensions or directories that
