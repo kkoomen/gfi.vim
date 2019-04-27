@@ -6,13 +6,29 @@ which opens the file under the cursor, but now in a smarter way.
 # Table of Contents
 - [gfi.vim](#gfivim)
 - [Table of Contents](#table-of-contents)
-- [How It Works](#how-it-works)
 - [Getting Started](#getting-started)
+- [How It Works](#how-it-works)
 - [Configuration](#configuration)
   * [`g:gfi_open_file_command`](#ggfi_open_file_command)
 - [Contributing](#contributing)
   * [Linting](#linting)
   * [Documentation](#documentation)
+
+# Getting Started
+
+Install `gfi.vim`:
+
+Using vim-pack:
+
+- `git clone https://github.com/kkoomen/gfi.vim ~/.vim/pack/<dir>/start/gfi`
+
+Using pathogen:
+
+- `git clone https://github.com/kkoomen/gfi.vim ~/.vim/bundle/gfi`
+
+Using plug:
+
+- `Plug 'kkoomen/gfi.vim'`
 
 # How It Works
 
@@ -50,18 +66,6 @@ Files will also be checked in a more advanced way per filetype when it can:
     )
     ```
     These paths will be resolved using the format `$GOPATH/src/<import>`.
-
-# Getting Started
-
-Install `gfi.vim`:
-
-Using vim-pack:
-
-- `git clone https://github.com/kkoomen/gfi.vim ~/.vim/pack/<dir>/start/gfi`
-
-Using pathogen:
-
-- `git clone https://github.com/kkoomen/gfi.vim ~/.vim/bundle/gfi`
 
 # Configuration
 
